@@ -132,7 +132,7 @@ The `TemplateStream` RPC opens a stream with the server over which `Template` ob
 
 Each `Template` object is identical for all three transaction `modes` with the exception of if and how the `transactions` are included.
 
-`NO_TRANSACTIONS`: Behaves similar to the current Statum protocol in that no information about the mempool is sent with each template. This option will use the minimum amount of client and server bandwidth but will not permit the client to select his own transactions. This mode is suitable for small miners who wish to outsource transaction selection to their pool, or for miners connecting to their own local instance of `bitcoind` and who do not wish to modify the template in any way.
+`NO_TRANSACTIONS`: Behaves similar to the current Stratum protocol in that no information about the mempool is sent with each template. This option will use the minimum amount of client and server bandwidth but will not permit the client to select his own transactions. This mode is suitable for small miners who wish to outsource transaction selection to their pool, or for miners connecting to their own local instance of `bitcoind` and who do not wish to modify the template in any way.
 
 `THIN_TRANSACTIONS`: This mode returns `Transaction` objects with each new template minus the `rawTransaction` field. Thus the template will only contain txids and other transaction metadata such as `sigops` and `size`. This mode is useful to miners who wish to inspect and possibly modify the contents of the template without using excessive bandwidth. 
 
