@@ -142,7 +142,7 @@ Excluding the transactions, the `Template` contains all the information necessar
 
 If the `THIN_TRANSACTIONS` or `FULL_TRANSACTIONS` mode is used the first `Template` after the stream is opened will include all the relevant mempool transactions in the `transactions.add` field. 
 
-Subsequent templates will only send the transaction differential between the prior and new template using the `add` and `remove` fields and not the full transactions. The `cleanJobs` boolean is used to signal to the client that a new block has been found and the client should clear its transaction cache and reset it to the transactions found in`transactions.add`.
+Subsequent templates will only send the transaction differential between the prior and new template using the `add` and `remove` fields and not the full transaction list. The `cleanJobs` boolean is used to signal to the client that a new block has been found and the client should clear its transaction cache and reset it to the transactions found in`transactions.add`.
 
 If the full transaction list is needed again, the client can make another `TemplateStream` RPC request to reset the server and receive the full list of transactions again in the `transactions.add` field.
 
@@ -160,7 +160,7 @@ This RPC is intended to only be implemented by mining pool software. It returns 
 
 This RPC is intended to only be implemented by mining pool software. The `Share` contains enough information to validate that the header meets the pool's difficulty requirement. If the transactions in the template not been modified then the `coinbase.merkleProof` field may be omitted. Otherwise `coinbase.merkleProof` must contain the hashes linking the coinbase to the blockheader to prove the correct coinbase transaction was used when mining this share. 
 
-The `SubmissionResponse` is returned in response to the `SubmitShare` RPC. Like with `SubmitBlock` it includes whether the share was accepted or not, the block ID, and an error message if submission failed. Optionally the mining pool can include a signature covering the serialized `response` object as a receipt. 
+The `SubmissionResponse` is returned in response to the `SubmitShare` RPC. Like with `SubmitBlock` it includes whether the share was accepted or not, the share ID, and an error message if submission failed. Optionally the mining pool can include a signature covering the serialized `response` object as a receipt. 
 
 
 ## Usage in Mining Software
