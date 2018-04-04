@@ -10,14 +10,14 @@ This document describes a new, more optimized, version of `getblocktemplate` whi
 
 ## Motivation
 
-Stratum and getblocktemplate both suck. Statum has come to dominate the mining industry today due to being far more optimized than getblocktemplate.
+Stratum and getblocktemplate both suck. Stratum has come to dominate the mining industry today due to being far more optimized than getblocktemplate.
 However, it only allows for centralized pooled mining and has resulted in enormous centralization of the mining industry. Getblocktemplate offers some limited ability
 to mine decentralized but it is so unoptimized nobody uses it.
 
 ## Design rationale
 
 `getblocktemplate2` will use protocol buffers over a gRPC API. We choose this because it uses a binary encoding which can be much more compact than both
-statum and getblocktemplate. At the time stratum was created, protobuf was still new and not well supported. Today protobuf is ubiquitious and there are libraries in nearly every
+stratum and getblocktemplate. At the time stratum was created, protobuf was still new and not well supported. Today protobuf is ubiquitious and there are libraries in nearly every
 language. Many tools also exists to marshal protobuf to JSON for easy human readability. 
 
 ## Specification
