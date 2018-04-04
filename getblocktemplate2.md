@@ -118,9 +118,10 @@ message SubmissionResponse {
 
 message Empty {}
 
-message Params {
+message MiningParams {
 	bytes shareDifficultyTarget = 1;
 	bool allowCoinbaseAppend    = 2;
+	bytes poolPubkey            = 3;
 }
 ```
 
@@ -153,7 +154,7 @@ The `SubmissionResponse` is returned in response to the `SubmitBlock` RPC and in
 
 #### GetParams
 
-This RPC is intended to only be implemented by mining pool software. It returns the mining pool's configuration parameters such as the share difficulty target and whether the pool allows additional data to go into the coinbase.
+This RPC is intended to only be implemented by mining pool software. It returns the mining pool's configuration parameters such as the share difficulty target and whether the pool allows additional data to go into the coinbase. The `poolPubkey` can be used to sign share response to serve as a form of a receipt. 
 
 #### SubmitShare
 
