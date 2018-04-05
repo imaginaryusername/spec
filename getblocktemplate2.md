@@ -158,7 +158,7 @@ This RPC is intended to only be implemented by mining pool software. It returns 
 
 #### SubmitShare
 
-This RPC is intended to only be implemented by mining pool software. The `Share` contains enough information to validate that the header meets the pool's difficulty requirement. If the transactions in the template not been modified then the `coinbase.merkleProof` field may be omitted. Otherwise `coinbase.merkleProof` must contain the hashes linking the coinbase to the blockheader to prove the correct coinbase transaction was used when mining this share. 
+This RPC is intended to only be implemented by mining pool software. The `Share` contains enough information to validate that the header meets the pool's difficulty requirement. If the transactions in the template have not been modified then the `coinbase.merkleProof` field may be omitted. Otherwise `coinbase.merkleProof` must contain the hashes linking the coinbase to the blockheader to prove the correct coinbase transaction was used when mining this share. 
 
 The `SubmissionResponse` is returned in response to the `SubmitShare` RPC. Like with `SubmitBlock` it includes whether the share was accepted or not, the share ID, and an error message if submission failed. Optionally the mining pool can include a signature covering the serialized `response` object as a receipt. 
 
