@@ -25,7 +25,7 @@ language. Many tools also exists to marshal protobuf to JSON for easy human read
 syntax="proto3";
 
 service API {
-  // The following three RPCs are expected to be implemented by the Bitcoin node software. 
+  // The following two RPCs are expected to be implemented by the Bitcoin node software. 
   // They may be proxied by a mining pool or any other public server.
   rpc TemplateStream (Subscribe) returns (stream Template) {}
   rpc SubmitBlock (Template) returns (SubmissionResponse) {}
