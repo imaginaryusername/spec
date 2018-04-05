@@ -38,7 +38,7 @@ service GetBlockTemplate {
 message Subscribe {
 	Mode mode = 1;
 
-	enume Mode {
+	enum Mode {
 		NO_TRANSACTIONS   = 1;
 		THIN_TRANSACTIONS = 2;
 		FULL_TRANSACTIONS = 3;
