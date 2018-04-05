@@ -12,7 +12,7 @@ This document describes a new, more optimized, version of `getblocktemplate` whi
 
 Stratum and getblocktemplate both suck. Stratum has come to dominate the mining industry today due to being far more optimized than getblocktemplate.
 However, it only allows for centralized pooled mining and has resulted in enormous centralization of the mining industry. Getblocktemplate offers some limited ability
-to mine decentralized but it is so unoptimized nobody mines with it. Additionally, software which consumes getblocktemplate suffers due to its poor performance.
+to mine decentralized but it is so unoptimized that nobody mines with it. Additionally, software which consumes getblocktemplate suffers due to its poor performance.
 
 ## Design rationale
 
