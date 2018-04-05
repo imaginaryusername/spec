@@ -57,6 +57,20 @@ message Template {
 		uint32 maxSigOpts   = 1;
 		uint32 maxBlockSize = 2;
 	}
+	
+	message TransactionDiff {
+		repeated Transaction add    = 1;
+		repeated Transaction remove = 2;
+
+		message Transaction {
+			bytes txid              = 1;
+			bytes rawTransaction    = 2;
+			repeated uint32 depends = 3;
+			uint64 fee              = 4;
+			uint32 size             = 5;
+			uint32 sigops           = 6;
+		}
+	}
 }
 
 message Header {
@@ -82,20 +96,6 @@ message Coinbase {
 		uint32 numTransactions = 1;
 		repeated bytes hashes  = 2;
 	}
-}
-
-message TransactionDiff {
-	repeated Transaction add    = 1;
-	repeated Transaction remove = 2;
-}
-
-message Transaction {
-	bytes txid              = 1;
-	bytes rawTransaction    = 2;
-	repeated uint32 depends = 3;
-	uint64 fee              = 4;
-	uint32 size             = 5;
-	uint32 sigops           = 6;
 }
 
 message Share {
