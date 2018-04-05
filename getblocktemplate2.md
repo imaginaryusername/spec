@@ -76,10 +76,11 @@ message Template {
 message Header {
 	uint64 time                       = 1;
 	uint32 height                     = 2;
-	bytes prevBlock                   = 3;
-	uint32 bits                       = 4;
-	uint32 version                    = 5;
-	bytes merkleRoot                  = 6;
+	uint32 nonce                      = 3;
+	bytes prevBlock                   = 4;
+	uint32 bits                       = 5;
+	uint32 version                    = 6;
+	bytes merkleRoot                  = 7;
 }
 
 message Coinbase {
