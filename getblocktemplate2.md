@@ -49,11 +49,11 @@ message Template {
 	string jobID                      = 1;
 	Header header                     = 2;
 	Coinbase coinbase                 = 3;
-	Contraints contraints             = 4;
+	Constraints constraints           = 4;
 	bool cleanJobs                    = 5;
 	TransactionDiff transactions      = 6;
 	
-	message Contraints {
+	message Constraints {
 		uint32 maxSigOps    = 1;
 		uint32 maxBlockSize = 2;
 		uint32 maxTxSize    = 3;
