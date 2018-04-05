@@ -1,4 +1,4 @@
-# Double Spend Notifications
+# Double Spend Alerts
 
 Version 1.0, 2018-3-23
 
@@ -6,7 +6,7 @@ Author: Chris Pacia (ctpacia@gmail.com)
 
 ## Abstract
 
-This document describes a new Bitcoin Cash network message for notifying nodes when a double spend of an unconfirmed transaction has occured.
+This document describes a new Bitcoin Cash network message for alerting nodes when a double spend of an unconfirmed transaction has occured.
 
 ## Motivation
 
@@ -29,7 +29,7 @@ data to reconstruct the transaction.
 
 
 
-The `dblspndnotif` command is defined as follows:
+The `dblspndalert` command is defined as follows:
 
 | Field Size | Description | Data Type  | Comments |
 | -----------|:-----------:| ----------:|---------:|
@@ -50,34 +50,34 @@ A new inventory type is added:
 
 | Value | Name |
 | -----------|:-----------:|
-| 4     | DOUBLE_SPEND_NOTIFICATION |
+| 4     | DOUBLE_SPEND_ALERT |
 
 The inventory vector hash shall be set to the hash of the serialized outpoint which was double spent. This implies that it is possible for 
-two different double spend notifications to share the same hash, but this is OK since we only care about relaying one double spend notification per input.
+two different double spend alerts to share the same hash, but this is OK since we only care about relaying one double spend alert per input.
 
 ## Message Relaying
 
 When a node detects a double spent input it should check to see if it has the corresponding double spend proof in inventory.
-If not it should construct a `dblspndnotif` notification for the input and relay it to its peers via `inv` packets.
+If not it should construct a `dblspndalert` message for the input and relay it to its peers via `inv` packets.
 
-When receiving an `inv` packet for a double spend notification a node should first check to see if it has the corresponding double spend notification
-in inventory. If not, it should download and validate the double spend notification. 
+When receiving an `inv` packet for a double spend alert a node should first check to see if it has the corresponding double spend alert
+in inventory. If not, it should download and validate the double spend alert. 
 
-The validation of the double spend notification must fail if:
+The validation of the double spend alert must fail if:
 
 * The double spent `outpoint` is not in he mempool. 
 * The `outpoint` is not in the `proof`.
-* The `proof` calculated from the mempool tx equals the `proof` in the double spend notification. 
+* The `proof` calculated from the mempool tx equals the `proof` in the double spend alert. 
 * The signature script for any of the `proof` inputs is invalid.
 
-If validation is successful the node should relay the `dblspndnotif` message to its peers.
+If validation is successful the node should relay the `dblspndalert` message to its peers.
 
-Double spend notifications can be removed from inventory once the outpoint confirms.
+Double spend alerts can be removed from inventory once the outpoint confirms.
 
-## Using Double Spend Notifications
+## Using Double Spend Alerts
 
 Merchants or payment processors which accept zero confirmation payments should wait T seconds after receiving the payment to see if a 
-double spend notification comes off the wire. If so they payment should be declined. T is configurable by merchants or those implementing point of
+double spend alerts comes off the wire. If so they payment should be declined. T is configurable by merchants or those implementing point of
 sale software. It should be set based on the merchant's tolerance for risk.
 
 ## Further Considerations
