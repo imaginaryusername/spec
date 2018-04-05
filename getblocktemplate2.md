@@ -168,6 +168,6 @@ The `SubmissionResponse` is returned in response to the `SubmitShare` RPC. Like 
 ## Usage in Mining Software
 
 Mining software implementing getblocktemplate2 should allow miners to enter two urls in the runtime options: `MiningPoolURL` and `GetBlockTemplateURL`. The `MiningPoolURL` specifies the endpoint which implements the `GetParams` and `SubmitShare` RPCs
-and is where the mining software should submit shares to. While the `GetBlockTempleURL` specifies where to stream the block templates from and where to push solves blocks. 
+and is where the mining software should submit shares to. While the `GetBlockTempleURL` specifies where to stream the block templates from and where to push solved blocks. 
 
 Both URLs may be the same implying that the user wishes to get the block template from and submit shares to the same place (as is similar to current Stratum mining). However, the miner may opt to get the template from another source, such as his local instance of bitcoind, and excercise is right as a miner to select his own transactions and improve the health of the network. 
