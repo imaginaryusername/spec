@@ -74,7 +74,7 @@ message Template {
 }
 
 message Header {
-	uint64 time                       = 1;
+	uint32 timestamp                  = 1;
 	uint32 height                     = 2;
 	uint32 nonce                      = 3;
 	bytes prevBlock                   = 4;
