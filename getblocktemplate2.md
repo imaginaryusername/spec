@@ -22,9 +22,9 @@ language. Many tools also exists to marshal protobuf to JSON for easy human read
 
 ## Specification
 ```protobuf
-syntax="proto3";
+syntax = "proto3";
 
-service API {
+service GetBlockTemplate {
   // The following two RPCs are expected to be implemented by the Bitcoin node software. 
   // They may be proxied by a mining pool or any other public server.
   rpc TemplateStream (Subscribe) returns (stream Template) {}
@@ -84,8 +84,9 @@ message Header {
 
 message Coinbase {
 	bytes scriptSig         = 1;
-	repeated Output outputs = 2;
-	MerkleProof merkleProof = 3;
+	bytes utxoRoot          = 2;
+	repeated Output outputs = 3;
+	MerkleProof merkleProof = 4;
 
 	message Output {
 		bytes script = 1;
@@ -148,7 +149,7 @@ If the full transaction list is needed again, the client can make another `Templ
 
 #### SubmitBlock
 
-Blocks which meet the full network difficulty requirement can be submitted to the network as a `Template` object to the `SubmitBlock` RPC. If the template has been unmodied the `jobID` can be set to the last received `jobID` and the server will use the transactions associated with that ID to validate the block. If modifications have been made to the block the `TransactionDiff` object should be included. The transactions in the diff may omit the full `rawTransaction` and just send the `txid` but if the server does not have the corresponding transaction in its mempool the validation will fail. 
+Blocks which meet the full network difficulty requirement can be submitted to the network as a `Template` object to the `SubmitBlock` RPC. If the template has been unmodied the `jobID` can be set to the last received `jobID` and the server will use the transactions associated with that ID to validate the block. If modifications have been made to the block the `TransactionDiff` object should be included. The transactions in the diff may omit the full `rawTransaction` and just send the `txid` but if the server does not have the corresponding transaction in its mempool the validation will fail. Note that when UTXO commitments are added to the protocol, the `utxoRoot` must be updated if any transactions are added to or removed from the template.
 
 The `SubmissionResponse` is returned in response to the `SubmitBlock` RPC and includes whether the block was accepted or not, the block ID, and an error message if submission failed.
 
