@@ -54,8 +54,9 @@ message Template {
 	TransactionDiff transactions      = 6;
 	
 	message Contraints {
-		uint32 maxSigOpts   = 1;
+		uint32 maxSigOps    = 1;
 		uint32 maxBlockSize = 2;
+		uint32 maxTxSize    = 3;
 	}
 	
 	message TransactionDiff {
