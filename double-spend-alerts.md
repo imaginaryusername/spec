@@ -6,7 +6,7 @@ Author: Chris Pacia (ctpacia@gmail.com)
 
 ## Abstract
 
-This document describes a new Bitcoin Cash network message for alerting nodes when a double spend of an unconfirmed transaction has occured.
+This document describes a new Bitcoin Cash network message for alerting nodes when a double spend of an unconfirmed transaction has occurred.
 
 ## Motivation
 
